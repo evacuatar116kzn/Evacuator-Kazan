@@ -89,21 +89,21 @@ document.getElementById('requestForm').addEventListener('submit', async function
  button.textContent = 'Отправить...';
  notice.style.display = 'none';
  try {
-   const response = await fetch('/api/order', {
-     метод: 'POST',
-     headers: {'Content-Type':'application/json'},
-     body: JSON.stringify(data)
-   });
-   const result = await response.json();
-   if (!response.ok) выдать новую ошибку(result.error || 'Не удалось отправить заявку');
-   уведомления.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
-   notice.style.background = '#176b45';
-   notice.style.display = 'block';
-   form.reset();
- } catch (err) {
-   уведомление.textContent = err.message || 'Ошибка сообщения. попробуй ещё раз или свяжитесь с нами по телефону.';
-   notice.style.background = '#9b2c2c';
-   notice.style.display = 'block';
+  const response = await fetch('/api/order', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify(data)
+});
+
+const result = await response.json();
+
+if (!response.ok) {
+  throw new Error(result.error || 'Не удалось отправить заявку');
+}
+
+notice.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
+notice.style.background = '#176b45';
+notice.style.display = 'block';
  } наконец {
    button.disabled = false;
    button.textContent = 'Отредактировать заявку';
