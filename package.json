@@ -1,0 +1,12 @@
+{
+  "name": "evakuator-kazan-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Сайт эвакуатора в Казани с отправкой заявок в Telegram",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
